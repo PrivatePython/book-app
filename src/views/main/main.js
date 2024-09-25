@@ -48,7 +48,6 @@ export class MainView extends AbstractView {
   }
 
   async loadList(q, offset) {
-    console.log('response')
     const res = await fetch(`http://openlibrary.org/search.json?q=${q}&offset=${offset}`)
     return res.json()
   }
