@@ -1,5 +1,6 @@
 import { DivComponent } from "../../common/div-component.js";
 import { Card } from "../card/card.js";
+import { Pagination } from "../pagination/pagination.js";
 import './card-list.css'
 
 export class CardList extends DivComponent {
@@ -16,12 +17,14 @@ export class CardList extends DivComponent {
     }
     this.el.classList.add('card_list');
     const cardGrid = document.createElement('div');
-    cardGrid.classList.add('card__grid')
+    cardGrid.classList.add('card__grid');
     this.el.append(cardGrid);
 
     for(const cardState of this.parentState.list){
-      cardGrid.append(new Card(this.appState, cardState).render())
+      cardGrid.append(new Card(this.appState, cardState).render());
     }
+    this.el.append(new Pagination(this.parentState).render());
+    
     return this.el;
   }
 }

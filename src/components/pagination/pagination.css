@@ -1,0 +1,19 @@
+.pagination_block{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.pagination_block button{
+  flex: auto;
+  background-color:  rgba(3, 184, 184, 0.377);
+  cursor: default;
+  border: none;
+}
+
+.pagination_block .active {
+ cursor: pointer;
+ background-color: rgb(3, 184, 184);
+ border: 1px solid rgb(1, 87, 128);
+}

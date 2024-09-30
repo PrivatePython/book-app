@@ -11,7 +11,7 @@ export class MainView extends AbstractView {
     loading: false,
     searchQuery: undefined,
     offset: 0,
-    page: null
+    cardsPerPage: 100
   };
 
   constructor(appState) {
@@ -34,7 +34,7 @@ export class MainView extends AbstractView {
   }
 
   async stateMainViewHook(path) {
-    if(path === 'searchQuery') {
+    if(path === 'searchQuery' || path === 'offset') {
       this.stateMainView.loading = true;
       const data = await this.loadList(this.stateMainView.searchQuery, this.stateMainView.offset)
       this.stateMainView.loading = false;
@@ -60,14 +60,12 @@ export class MainView extends AbstractView {
 
     main.append(new Search(this.stateMainView).render())
     main.append(elSearching)
-    main.append(new CardList(this.appState, this.stateMainView).render())
+    if(this.stateMainView.list.length){
+      main.append(new CardList(this.appState, this.stateMainView).render())
+    }
     this.app.innerHTML = '';
     this.app.append(main);
     this.renderHeader();
-  }
-
-  renderPagination(){
-    
   }
 
   renderHeader() {

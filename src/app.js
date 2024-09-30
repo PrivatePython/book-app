@@ -16,12 +16,11 @@ class App{
   }
   
   route() {
-    console.log(this)
     if(this.currentView) {
       this.currentView.destroy();
     }
-    const view = this.routes.find(r => r.path == location.hash).view
-    this.currentView = new view(this.appState)
+    const view = this.routes.find(r => r.path == location.hash).view;
+    this.currentView = new view(this.appState);
     this.currentView.render();
   }
 }
